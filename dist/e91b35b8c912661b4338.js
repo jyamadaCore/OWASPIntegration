@@ -3,7 +3,7 @@
 /***/ 930:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = __nccwpck_require__.p + "e91b35b8c912661b4338.js";
+module.exports = __nccwpck_require__.p + "bac03f94500a5e54afd5.js";
 
 /***/ })
 
@@ -87,103 +87,14 @@ module.exports = __nccwpck_require__.p + "e91b35b8c912661b4338.js";
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/******/ var __webpack_modules__ = ({
-
-/***/ 930:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require2_) => {
-
-module.exports = __nccwpck_require2_.p + "bac03f94500a5e54afd5.js";
-
-/***/ })
-
-/******/ });
-/************************************************************************/
-/******/ // The module cache
-/******/ var __webpack_module_cache__ = {};
-/******/ 
-/******/ // The require function
-/******/ function __nccwpck_require2_(moduleId) {
-/******/ 	// Check if module is in cache
-/******/ 	var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 	if (cachedModule !== undefined) {
-/******/ 		return cachedModule.exports;
-/******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
-/******/ 	var module = __webpack_module_cache__[moduleId] = {
-/******/ 		// no module.id needed
-/******/ 		// no module.loaded needed
-/******/ 		exports: {}
-/******/ 	};
-/******/ 
-/******/ 	// Execute the module function
-/******/ 	var threw = true;
-/******/ 	try {
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nccwpck_require2_);
-/******/ 		threw = false;
-/******/ 	} finally {
-/******/ 		if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 	}
-/******/ 
-/******/ 	// Return the exports of the module
-/******/ 	return module.exports;
-/******/ }
-/******/ 
-/******/ // expose the modules object (__webpack_modules__)
-/******/ __nccwpck_require2_.m = __webpack_modules__;
-/******/ 
-/************************************************************************/
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
-/******/ (() => {
-/******/ 	__nccwpck_require2_.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ })();
-/******/ 
-/******/ /* webpack/runtime/publicPath */
-/******/ (() => {
-/******/ 	var scriptUrl;
-/******/ 	if (typeof import.meta.url === "string") scriptUrl = import.meta.url
-/******/ 	// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 	// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 	if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 	scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 	__nccwpck_require2_.p = scriptUrl;
-/******/ })();
-/******/ 
 /******/ /* webpack/runtime/compat */
 /******/ 
 /******/ if (typeof __nccwpck_require2_ !== 'undefined') __nccwpck_require2_.ab = new URL(/* asset import */ __nccwpck_require__(930), __nccwpck_require__.b).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
-/******/ /* webpack/runtime/import chunk loading */
-/******/ (() => {
-/******/ 	__nccwpck_require2_.b = new URL(/* asset import */ __nccwpck_require__(930), __nccwpck_require__.b);
-/******/ 	
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		179: 0
-/******/ 	};
-/******/ 	
-/******/ 	// no install chunk
-/******/ 	
-/******/ 	// no chunk on demand loading
-/******/ 	
-/******/ 	// no external install chunk
-/******/ 	
-/******/ 	// no on chunks loaded
-/******/ })();
-/******/ 
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/******/ /* webpack/runtime/compat */
-/******/ 
-/******/ if (typeof __nccwpck_require3_ !== 'undefined') __nccwpck_require3_.ab = new URL(/* asset import */ __nccwpck_require2_(930), __nccwpck_require2_.b).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
-/******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
 
-var __importDefault = (  false) || function (mod) {
+var __importDefault = ( false) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -243,9 +154,6 @@ async function initializeWebSocket() {
 }
 // Run the WebSocket initialization
 initializeWebSocket();
-
-
-})();
 
 
 })();

@@ -1,10 +1,14 @@
 import axios from 'axios';
-import WebSocket from 'ws'; // Import the WebSocket class directly
+import WebSocket from 'ws';
+import dotenv from 'dotenv';
 
-// Fetch environment variables from GitHub Actions environment
+// Load environment variables from .env file
+dotenv.config();
+
+// Fetch environment variables
 const baseUrl: string = process.env.BASE_URL || '';
 const bearerToken: string = process.env.BEARER_TOKEN || '';
-const instanceId: string = process.env.INSTANCE_ID || ''; // Fetching instanceId from environment variables
+const instanceId: string = process.env.INSTANCE_ID || '';
 
 // Validate required environment variables
 if (!baseUrl || !bearerToken || !instanceId) {
@@ -13,7 +17,7 @@ if (!baseUrl || !bearerToken || !instanceId) {
 }
 
 // Construct the API endpoint URL
-const apiUrl: string = `${baseUrl}/v1/instances/${instanceId}/console?type=frida`;
+const apiUrl: string = `${baseUrl}/api/v1/instances/${instanceId}/console?type=frida`;
 
 // Function to get the WebSocket URL from the API
 async function getWebSocketUrl(): Promise<string | undefined> {
@@ -44,23 +48,23 @@ async function initializeWebSocket() {
         return;
     }
 
-    const socket = new WebSocket(url); // Correctly construct WebSocket instance
+    const socket = new WebSocket(url);
 
     socket.on('open', () => {
         console.log("WebSocket connection established");
-        socket.send("Hello WebSocket!"); // Send a message after connection opens
+        socket.send("Hello WebSocket!");
     });
 
     socket.on('message', (message: WebSocket.MessageEvent) => {
-        console.log("Received message:", message.toString()); // Log incoming messages
+        console.log("Received message:", message.toString());
     });
 
     socket.on('error', (error: WebSocket.ErrorEvent) => {
-        console.error("WebSocket error:", error.message); // Log errors
+        console.error("WebSocket error:", error.message);
     });
 
     socket.on('close', () => {
-        console.log("WebSocket connection closed"); // Log when connection closes
+        console.log("WebSocket connection closed");
     });
 }
 
