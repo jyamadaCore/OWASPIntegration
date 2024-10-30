@@ -1,3 +1,5 @@
+// main.js
+
 // Required imports
 const { Corellium } = require("@corellium/corellium-api");
 const es = require("event-stream");
@@ -12,18 +14,19 @@ const path = require("path");
 const argv = yargs(process.argv).argv;
 
 // GitHub Action Inputs
-const deviceId = core.getInput("deviceId");
+const deviceId = core.getInput("deviceId") || process.env.CORELLIUM_INSTANCE_ID;
 const reportFormat = core.getInput("reportFormat") || "html";
-const projectName = core.getInput("projectName");
-const cmd = argv._[2] || "download";
-const fridaScriptPath = core.getInput("fridaScriptPath") || "demos/android/MASVS-STORAGE/MASTG-DEMO-0002/script.js";
-const endpoint = argv.endpoint || "https://app.corellium.com";
-const user = core.getInput("user");
-const pw = core.getInput("password");
+const projectName = core.getInput("projectName") || process.env.CORELLIUM_PROJECT;
+const cmd = core.getInput("command") || "download";
+const fridaScriptPath = core.getInput("fridaScriptPath") || "/data/corellium/frida/scripts/script.js";
+const endpoint = core.getInput("endpoint") || "https://marketing.enterprise.corellium.com";
+const user = core.getInput("user") || process.env.CORELLIUM_USER;
+const pw = core.getInput("password") || process.env.CORELLIUM_PASSWORD;
+
 
 function usage() {
     console.log(
-        "Usage: script.js [--endpoint <endpoint>] --user <user> --password <pw> --project <project> --instance <instance> [create | inplace | stream | download | frida]"
+        "Usage: script.js [--endpoint <endpoint>] --user <user> --password <pw> --project <project> --instance <instance> [create | inplace | stream | download | frida | screenshot]"
     );
     process.exit(-1);
 }
@@ -68,11 +71,11 @@ async function main() {
                 // Create a new instance
                 console.log("Creating instance...");
                 instance = await project.createInstance({
-                    flavor: "iphone6s",
-                    os: "12.0",
-                    name: "Console test",
-                    osbuild: "16A366",
-                    patches: "jailbroken",
+                    flavor: "ranchu",
+                    os: "14.0.0",
+                    name: "OWASP-Test",
+                    osbuild: "r2 userdebug",
+                    patches: "rooted",
                 });
                 console.log("Instance created, waiting to turn on...");
                 await instance.finishRestore();
@@ -84,6 +87,9 @@ async function main() {
         } else if (cmd === "frida") {
             // Execute Frida Script
             await executeFrida(instance, fridaScriptPath);
+        } else if (cmd === "screenshot") {
+            // Take a screenshot
+            await takeScreenshot(instance);
         }
 
         if (cmd === "create" || cmd === "inplace") {
@@ -160,6 +166,17 @@ async function executeFrida(instance, scriptPath) {
     await agent.ready();
     await instance.executeFridaScript(scriptPath);
     console.log("Frida script executed successfully.");
+}
+
+/**
+ * Take a Screenshot
+ */
+async function takeScreenshot(instance) {
+    console.log("Taking screenshot...");
+    await instance.waitForAgentReady();
+    const screenshot = await instance.takeScreenshot();
+    fs.writeFileSync("screenshot.png", screenshot);
+    console.log("Screenshot saved as screenshot.png");
 }
 
 main();
