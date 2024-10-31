@@ -4,8 +4,12 @@ import { run } from "../src/main"; // Adjust path if necessary
 async function main() {
     try {
         await run();
-    } catch (error: any) {
-        core.setFailed(error.message);
+    } catch (error) {
+        if (error instanceof Error) {
+            core.setFailed(`Error: ${error.message}`);
+        } else {
+            core.setFailed("An unknown error occurred.");
+        }
     }
 }
 

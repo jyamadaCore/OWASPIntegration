@@ -24,6 +24,9 @@ const endpoint: string = core.getInput("endpoint") || "https://marketing.enterpr
 const user: string = core.getInput("user") || process.env.CORELLIUM_USER || "";
 const pw: string = core.getInput("password") || process.env.CORELLIUM_PASSWORD || "";
 
+/**
+ * Usage helper to display command format
+ */
 function usage() {
     console.log(
         "Usage: script.js [--endpoint <endpoint>] --user <user> --password <pw> --project <project> --instance <instance> [create | inplace | stream | download | frida | screenshot]"
@@ -37,11 +40,16 @@ if (!user || !pw || !projectName) {
     usage();
 }
 
-// Sleep helper
-function sleep(ms: number) {
+/**
+ * Sleep helper
+ */
+function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/**
+ * Main entry point for the action.
+ */
 export async function run() {
     try {
         // Corellium Client Configuration
@@ -185,4 +193,5 @@ export async function takeScreenshot(instance: Instance | undefined) {
     console.log("Screenshot saved as screenshot.png");
 }
 
+// Run the main function
 run();

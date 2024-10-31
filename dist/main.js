@@ -51,6 +51,9 @@ const fridaScriptPath = core.getInput("fridaScriptPath") || "/data/corellium/fri
 const endpoint = core.getInput("endpoint") || "https://marketing.enterprise.corellium.com";
 const user = core.getInput("user") || process.env.CORELLIUM_USER || "";
 const pw = core.getInput("password") || process.env.CORELLIUM_PASSWORD || "";
+/**
+ * Usage helper to display command format
+ */
 function usage() {
     console.log("Usage: script.js [--endpoint <endpoint>] --user <user> --password <pw> --project <project> --instance <instance> [create | inplace | stream | download | frida | screenshot]");
     process.exit(-1);
@@ -60,10 +63,15 @@ if (!user || !pw || !projectName) {
     console.log("username, password, and project must be specified");
     usage();
 }
-// Sleep helper
+/**
+ * Sleep helper
+ */
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
+/**
+ * Main entry point for the action.
+ */
 async function run() {
     try {
         // Corellium Client Configuration
@@ -200,4 +208,5 @@ async function takeScreenshot(instance) {
     fs.writeFileSync("screenshot.png", screenshot);
     console.log("Screenshot saved as screenshot.png");
 }
+// Run the main function
 run();

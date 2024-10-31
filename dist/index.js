@@ -30,7 +30,12 @@ async function main() {
         await (0, main_1.run)();
     }
     catch (error) {
-        core.setFailed(error.message);
+        if (error instanceof Error) {
+            core.setFailed(`Error: ${error.message}`);
+        }
+        else {
+            core.setFailed("An unknown error occurred.");
+        }
     }
 }
 main();
